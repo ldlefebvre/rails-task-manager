@@ -1,0 +1,18 @@
+<h1>My tasks</h1>
+<ul>
+  <% @tasks.each do |oneTask| %>
+    <div class="d-flex">
+      <input type="checkbox" id="taskCheckbox_<%= oneTask.id %>" class="mx-1">
+      <label for="taskCheckbox"><%= link_to oneTask.title, task_path(oneTask) %></label>
+      <%= link_to delete_task_path(oneTask),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+        <i class="fa-regular fa-trash-can mx-2"></i>
+      <% end %>
+      <%= link_to "Delete",
+        delete_task_path(oneTask),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    </div>
+  <% end %>
+</ul>
+<p><%= link_to "+ Add a new task", new_task_path %></p>
